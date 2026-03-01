@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currículo — Ivan Lopes da Silva</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ── Variables ────────────────────────────────────── */
+    :root {
+      --ink:       #1a1a2e;
+      --ink-light: #3d3d5c;
+      --muted:     #7b7b9d;
+      --accent:    #1a56db;
+      --accent-lt: #e8f0fe;
+      --rule:      #dde3f0;
+      --bg:        #f7f8fc;
+      --white:     #ffffff;
+      --ff-head:   'Playfair Display', Georgia, serif;
+      --ff-body:   'Lato', sans-serif;
+    }
+
+    /* ── Reset ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--ff-body);
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { list-style: none; }
+
+    /* ── Page wrapper ─────────────────────────────────── */
+    .page {
+      max-width: 860px;
+      margin: 2.5rem auto;
+      background: var(--white);
+      box-shadow: 0 4px 40px rgba(26,26,46,0.10);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ── HEADER ───────────────────────────────────────── */
+    .cv-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.5rem 3rem 2.25rem;
+      border-bottom: 2px solid var(--ink);
+      position: relative;
+    }
+    .cv-header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent) 0%, #6ea8fe 100%);
+    }
+    /* foto circular */
+    .header__photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 5px var(--accent-lt), 0 6px 24px rgba(26,86,219,0.18);
+      flex-shrink: 0;
+    }
+    .header__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* placeholder quando não há foto */
+    .header__photo--placeholder {
+      background: var(--accent-lt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-head);
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .header__name {
+      font-family: var(--ff-head);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .header__name span { color: var(--accent); }
+    .header__role {
+      margin-top: 0.45rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .header__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
+    }
+    .header__tags .chip {
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+    }
+    /* contato — agora na sidebar */
+    .contact__item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--ink-light);
+      margin-bottom: 0.4rem;
+    }
+    .contact__item i {
+      color: var(--accent);
+      width: 14px;
+      text-align: center;
+      font-size: 0.78rem;
+      flex-shrink: 0;
+    }
+
+    /* ── BODY LAYOUT ──────────────────────────────────── */
+    .cv-body {
+      display: grid;
+      grid-template-columns: 1fr 270px;
+    }
+
+    /* ── MAIN (left) ──────────────────────────────────── */
+    .cv-main {
+      padding: 2.5rem 2.75rem 2.5rem 3rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    /* ── SIDEBAR (right) ──────────────────────────────── */
+    .cv-sidebar {
+      padding: 2.5rem 1.75rem;
+      background: #fafbff;
+    }
+
+    /* ── Section heading ──────────────────────────────── */
+    .sec-title {
+      font-family: var(--ff-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1.5px solid var(--rule);
+    }
+    .sec-title i {
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+    .section { margin-bottom: 2.5rem; }
+    .section:last-child { margin-bottom: 0; }
+
+    /* ── SOBRE ────────────────────────────────────────── */
+    .sobre-text {
+      font-size: .95rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+      text-align: justify;
+    }
+    .sobre-text strong { color: var(--ink); font-weight: 700; }
+
+    /* ── EXPERIÊNCIA ──────────────────────────────────── */
+    .job { margin-bottom: 1.75rem; }
+    .job:last-child { margin-bottom: 0; }
+    .job__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .job__title {
+      font-family: var(--ff-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .job__date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-lt);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .job__company {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin: 0.2rem 0 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .job__list {
+      padding-left: 0;
+    }
+    .job__list li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      margin-bottom: 0.3rem;
+    }
+    .job__list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── FORMAÇÃO ─────────────────────────────────────── */
+    .edu__title {
+      font-family: var(--ff-head);
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .edu__school {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0.1rem 0 0.25rem;
+    }
+    .edu__date {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── SIDEBAR: skills ──────────────────────────────── */
+    .skill-group { margin-bottom: 1.75rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.65rem;
+    }
+    .skill-item i {
+      width: 20px;
+      text-align: center;
+      color: var(--accent);
+      font-size: 0.88rem;
+      flex-shrink: 0;
+    }
+    .skill-item span {
+      font-size: 0.84rem;
+      color: var(--ink-light);
+      font-weight: 400;
+    }
+    .skill-item strong {
+      font-size: 0.84rem;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* bar */
+    .skill-bar-wrap {
+      flex: 1;
+      height: 4px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .skill-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #6ea8fe);
+      border-radius: 2px;
+      width: 0;
+      transition: width 1s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── SIDEBAR: diferenciais ────────────────────────── */
+    .dif-item {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .dif-item:last-child { margin-bottom: 0; }
+    .dif-item i {
+      margin-top: 0.2rem;
+      color: var(--accent);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .dif-item div strong {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .dif-item div p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── SIDEBAR: cursos ──────────────────────────────── */
+    .curso-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--accent-lt);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2px;
+      margin: 0.2rem 0.2rem 0.2rem 0;
+    }
+    .curso-tag i { font-size: 0.65rem; }
+
+    /* ── Print ────────────────────────────────────────── */
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; }
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 680px) {
+      .page { margin: 0; border-radius: 0; }
+      .cv-header { grid-template-columns: 1fr; }
+      .cv-body { grid-template-columns: 1fr; }
+      .cv-sidebar { border-top: 1px solid var(--rule); }
+      .cv-main { padding: 2rem 1.5rem; }
+      .cv-sidebar { padding: 2rem 1.5rem; }
+      .cv-header { padding: 2rem 1.5rem 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="cv-header">
+
+    <!-- Foto circular (substitua o src pela sua foto) -->
+    <div class="header__photo header__photo--placeholder">
+      <img src="assets/img/home.png" alt="">
+    </div>
+
+    <!-- Informações -->
+    <div class="header__info">
+      <h1 class="header__name">Ivan <span>Lopes</span> da Silva</h1>
+      <p class="header__role">Desenvolvedor Backend Junior</p>
+      <div class="header__tags">
+        <span class="chip">JavaScript</span>
+        <span class="chip">Ruby on Rails</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">Next.js</span>
+        <span class="chip">Git &amp; GitHub</span>
+      </div>
+    </div>
+
+  </header>
+
+  <div class="cv-body">
+
+    <!-- ══════════════ MAIN ══════════════ -->
+    <main class="cv-main">
+
+      <!-- Sobre -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-user"></i> Sobre Mim</h1>
+        <p class="sobre-text">
+          Profissional formado em <strong>Análise e Desenvolvimento de Sistemas</strong>, em transição de carreira após <strong>17 anos na Segurança Pública (Polícia Penal)</strong>. Experiência como Desenvolvedor Frontend Júnior com JavaScript, HTML, CSS, Ruby on Rails e PostgreSQL. Busca oportunidade formal em TI para aplicar habilidades técnicas e contribuir com soluções inovadoras.
+        </p>
+      </section>
+
+      <!-- Experiência -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-briefcase"></i> Experiência Profissional</h1>
+
+        <div class="job">
+          <div class="job__header">
+            <span class="job__title">Desenvolvedor Frontend Júnior</span>
+            <span class="job__date">2024 — Atual</span>
+          </div>
+          <p class="job__company">Projetos Web — Freelancer / Pessoais</p>
+          <ul class="job__list">
+            <li>Criação de aplicações web com HTML, CSS e JavaScript, com foco em design responsivo e usabilidade.</li>
+            <li>Desenvolvimento de sistemas em Ruby on Rails com integração a banco de dados PostgreSQL.</li>
+            <li>Versionamento de código com Git e GitHub e colaboração em projetos open-source.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job__header">
+            <span class="job__title">Agente de Segurança Pública</span>
+            <span class="job__date">2008 — Atual</span>
+          </div>
+          <p class="job__company">Polícia Penal — SEJUSP</p>
+          <ul class="job__list">
+            <li>Atuação em ambiente de alta complexidade e responsabilidade, com foco em segurança e gestão de processos.</li>
+            <li>Liderança, tomada de decisão sob pressão, trabalho em equipe e resolução de problemas complexos.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Formação -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-graduation-cap"></i> Formação Acadêmica</h1>
+        <div class="edu__title">Análise e Desenvolvimento de Sistemas</div>
+        <div class="edu__school">Estácio de Santa Catarina</div>
+        <div class="edu__date">Out/2022 — Abr/2025</div>
+      </section>
+
+      <!-- Cursos -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-book-open"></i> Cursos Relevantes</h1>
+        <div>
+          <span class="curso-tag"><i class="fa-brands fa-html5"></i> Desenvolvimento Web (HTML5, CSS, JS)</span>
+          <span class="curso-tag"><i class="fa-solid fa-database"></i> Banco de Dados (PostgreSQL e MySQL)</span>
+          <span class="curso-tag"><i class="fa-solid fa-cloud"></i> Computação em Nuvem</span>
+          <span class="curso-tag"><i class="fa-solid fa-gears"></i> Engenharia de Software</span>
+          <span class="curso-tag"><i class="fa-brands fa-java"></i> POO em Java</span>
+          <span class="curso-tag"><i class="fa-solid fa-robot"></i> IA para Desenvolvedores</span>
+          <span class="curso-tag"><i class="fa-solid fa-mobile-screen-button"></i> Programação Mobile Android</span>
+          <span class="curso-tag"><i class="fa-solid fa-shield-halved"></i> Segurança da Informação</span>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ══════════════ SIDEBAR ══════════════ -->
+    <aside class="cv-sidebar">
+
+      <!-- Contato -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-address-card"></i> Contato</h1>
+        <div class="contact__item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Ipatinga / MG — CEP 35162-039</span>
+        </div>
+        <div class="contact__item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <a href="https://wa.me/5533999547599">(33) 99954-7599</a>
+        </div>
+        <div class="contact__item">
+          <i class="fa-solid fa-envelope"></i>
+          <a href="mailto:ivanctga@gmail.com">ivanctga@gmail.com</a>
+        </div>
+        <div class="contact__item">
+          <i class="fa-brands fa-linkedin"></i>
+          <a href="https://linkedin.com/in/ivan-lopes-b28708179" target="_blank">ivan-lopes-b28708179</a>
+        </div>
+        <div class="contact__item">
+          <i class="fa-brands fa-github"></i>
+          <a href="https://github.com/Ivanctga" target="_blank">github.com/Ivanctga</a>
+        </div>
+      </section>
+
+      <!-- Habilidades -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-code"></i> Habilidades</h1>
+        <div class="skill-group">
+          <div class="skill-item">
+            <i class="fa-brands fa-js"></i>
+            <strong>JavaScript</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-html5"></i>
+            <strong>HTML &amp; CSS</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-solid fa-gem"></i>
+            <strong>Ruby on Rails</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="75"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-solid fa-database"></i>
+            <strong>PostgreSQL</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="72"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-react"></i>
+            <strong>Next.js</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="68"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-php"></i>
+            <strong>PHP</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="55"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-java"></i>
+            <strong>Java</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="60"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-brands fa-git-alt"></i>
+            <strong>Git &amp; GitHub</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <i class="fa-solid fa-database"></i>
+            <strong>MySQL</strong>
+            <div class="skill-bar-wrap"><div class="skill-bar" data-w="65"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Idiomas -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-language"></i> Idiomas</h1>
+        <div class="skill-item">
+          <i class="fa-solid fa-flag"></i>
+          <strong>Português</strong>
+          <div class="skill-bar-wrap"><div class="skill-bar" data-w="100"></div></div>
+        </div>
+      </section>
+
+      <!-- Diferenciais -->
+      <section class="section">
+        <h1 class="sec-title"><i class="fa-solid fa-star"></i> Diferenciais</h1>
+        <div class="dif-item">
+          <i class="fa-solid fa-medal"></i>
+          <div>
+            <strong>Disciplina</strong>
+            <p>Formação com alta responsabilidade e rigor profissional.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <i class="fa-solid fa-bolt"></i>
+          <div>
+            <strong>Aprendizado Contínuo</strong>
+            <p>Evolução constante em tecnologias modernas.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <i class="fa-solid fa-people-group"></i>
+          <div>
+            <strong>Trabalho em Equipe</strong>
+            <p>Experiência em ambientes colaborativos e sob pressão.</p>
+          </div>
+        </div>
+        <div class="dif-item">
+          <i class="fa-solid fa-chess-knight"></i>
+          <div>
+            <strong>Resolução de Problemas</strong>
+            <p>Tomada de decisão estratégica em situações críticas.</p>
+          </div>
+        </div>
+      </section>
+
+    </aside>
+  </div><!-- /.cv-body -->
+
+</div><!-- /.page -->
+
+<script>
+  // Anima as barras de habilidades ao carregar
+  document.addEventListener('DOMContentLoaded', () => {
+    const bars = document.querySelectorAll('.skill-bar');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const w   = bar.dataset.w;
+          setTimeout(() => { bar.style.width = w + '%'; }, 150);
+          observer.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    bars.forEach(b => observer.observe(b));
+  });
+</script>
+
+</body>
+</html>
